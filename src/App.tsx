@@ -40,18 +40,19 @@ const App = () => {
   const keyPress = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "e") {
-        refTime.current = clearInterval(timer)
+        clearInterval(refTime.current)
         setStt((prev) => prev + ".");
         setSpace(false);
         k(20, 600, 100)
+        refTime.current = setInterval(timer, 500);
       } else if (e.key === "u") {
-        refTime.current = clearInterval(timer)
+        clearInterval(refTime.current)
         setStt((prev) => prev + "-");
         setSpace(false);
         k(20, 700, 100)
+        refTime.current = setInterval(timer, 500);
       } else if (e.key === ".") {
-        refTime.current = clearInterval(timer)
-
+        clearInterval(refTime.current)
         setStt((prev) => {
           let val = 0
           for (let i = 1; i < 3; i++) {
@@ -64,11 +65,15 @@ const App = () => {
           let spaces = prev.substring(0, prev.length - val)
           return prev.substring(0, spaces.lastIndexOf('_') + 1)
         })
+        refTime.current = setInterval(timer, 500);
       }
     },
     [setStt, setSpace]
   );
   useEffect(() => {
+    // if (refTime.current) {
+    //   clearInterval(timer)
+    // }
     console.log("render");
     refTime.current = setInterval(timer, 700);
     document.addEventListener("keydown", keyPress);
