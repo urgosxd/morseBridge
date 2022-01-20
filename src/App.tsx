@@ -5,7 +5,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { text } from 'stream/consumers';
 
 const App = () => {
-  document.documentElement.lang = 'es'
+  //document.documentElement.lang = 'es'
   const [stt, setStt] = useState<string>('__');
   const [space, setSpace] = useState<boolean>(true);
   const [resMode, setResMode] = useState<boolean>(false)
