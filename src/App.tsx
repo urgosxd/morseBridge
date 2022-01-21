@@ -239,7 +239,9 @@ const App = () => {
   async function getGoogle(query: string) {
     query = query.trim().replaceAll(' ', '+')
     console.log(query)
-    const response = await fetch(`https://serpapi.com/search.json?engine=google&q=${query}&location=Peru&google_domain=google.com.pe&gl=pe&hl=es&num=3&api_key=956366187f9ce0de0ab8fec9a2103250819db90578aac9935c13f85a9abe92fb`)
+    const response = await fetch(`/.netlify/functions/node-fetch?consulta=${query}`, {
+      headers: { accept: "Accept: application/json" }
+    })
     response.json().then(e => setRes(e))
 
   }
